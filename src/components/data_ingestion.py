@@ -6,6 +6,12 @@ from src.Exception import CustomException
 from src.Logger import logging
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+# from src.components.data_transformation import DataTransformationconfig
+
+from src.components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainerConfig
+
 # Initialize the data ingetion config
 @dataclass
 class DataIngestionConfig:
@@ -25,7 +31,7 @@ class DataIngestion:
         logging.info("Data Ingestion has started...")
         try:
             #reading the data from the file and saving it into the dataframe
-            df = pd.read_csv(os.path.join('notebooks/data', 'gemstone.csv'))
+            df = pd.read_csv(os.path.join('EDA/data', 'gemstone.csv'))
             logging.info("Reading of the data into the pandas dataframe completed.")
 
             #save the data into the raw file before applying train test split
@@ -48,3 +54,13 @@ class DataIngestion:
         except Exception as e:
             logging.info("Exception occured at the Data Ingesgtion stage.")
             raise CustomException(e, sys)
+
+if __name__ == "__main__":
+    obj = DataIngestion()
+    train_data, test_data = obj.init_data_ingestion()
+
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
