@@ -8,60 +8,164 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background: url('https://www.wallpaperflare.com/static/119/256/853/space-tylercreatesworlds-diamonds-space-art-wallpaper.jpg') no-repeat center center/cover;
+            background: linear-gradient(135deg, #c3e5f7, #e8d9ff, #ffe5f0);
+            background-size: 300% 300%;
+            animation: gradientShift 12s ease infinite;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #ffffff;
+            color: #2c2c2c;
+            transition: 0.5s;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Dark mode */
+        body.dark {
+            background: linear-gradient(135deg, #1e1e1e, #232526);
+            color: white;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 40px 50px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(15px);
+            padding: 50px 60px;
+            border-radius: 20px;
             width: 90%;
-            max-width: 550px;
+            max-width: 600px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 1.2s ease;
+        }
+
+        body.dark .container {
+            background: rgba(40, 40, 40, 0.65);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .diamond-icon {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            background: linear-gradient(135deg, #dff9ff, #c3e6ff);
+            clip-path: polygon(50% 0%, 90% 35%, 70% 100%, 30% 100%, 10% 35%);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.6); }
+            100% { filter: brightness(1); }
         }
 
         h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #e6e6e6;
+            margin-top: 20px;
         }
 
         a {
             text-decoration: none;
-            background: #00aaff;
-            padding: 12px 22px;
+            background: #6c63ff;
+            padding: 14px 28px;
             color: white;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 10px;
+            font-size: 17px;
             font-weight: 600;
+            display: inline-block;
+            margin-top: 25px;
             transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(108, 99, 255, 0.35);
         }
 
         a:hover {
-            background: #007acc;
+            background: #584ef2;
         }
+
+        /* Theme Toggle */
+        .toggle-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: white;
+            border-radius: 50px;
+            width: 55px;
+            height: 28px;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(0,0,0,0.2);
+        }
+
+        .toggle-circle {
+            width: 25px;
+            height: 25px;
+            background: #6c63ff;
+            border-radius: 50%;
+            transition: 0.3s;
+            transform: translateX(2px);
+        }
+
+        body.dark .toggle-circle {
+            transform: translateX(28px);
+            background: #ffd86f;
+        }
+
+        /* Floating AI Assistant */
+        .assistant {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .assistant::before {
+            content: "🤖";
+            font-size: 30px;
+            position: absolute;
+            top: 8px; left: 12px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
     </style>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
 </head>
+
 <body>
 
+    <div class="toggle-btn" onclick="toggleTheme()">
+        <div class="toggle-circle"></div>
+    </div>
+
+    <div class="assistant"></div>
+
     <div class="container">
-        <h1>💎 Diamond Price Prediction</h1>
-        <p>Use machine learning to estimate the value of diamonds based on key parameters.</p>
-        <a href="/predict">Start Prediction</a>
+        <div class="diamond-icon"></div>
+
+        <h1>💎 AI Diamond Price Estimator</h1>
+        <p>Use machine learning to estimate diamond value with interactive AI tools.</p>
+
+        <a href="/predict">✨ Start Prediction</a>
     </div>
 
 </body>

@@ -9,165 +9,317 @@
             margin: 0;
             padding: 40px 0;
             font-family: 'Poppins', sans-serif;
-            background: url('https://wallpapercave.com/wp/wp12130150.jpg') no-repeat center center/cover;
+            background: linear-gradient(135deg, #f3e7ff, #d6f8ff, #fff0f3);
+            background-size: 260% 260%;
+            animation: bgShift 15s ease infinite;
+            transition: 0.5s;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #1f1f1f, #262626);
+            color: white;
+        }
+
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .form-container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            width: 90%;
-            max-width: 550px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(14px);
+            width: 92%;
+            max-width: 900px;
             margin: auto;
-            padding: 30px 40px;
-            border-radius: 15px;
-            color: #fff;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            padding: 40px 50px;
+            border-radius: 18px;
+            color: #333;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        body.dark .form-container {
+            background: rgba(40,40,40,0.6);
+            color: white;
+        }
+
+        .diamond-icon {
+            width: 90px;
+            height: 90px;
+            margin: auto;
+            background: linear-gradient(135deg, #dff9ff, #c3e6ff);
+            clip-path: polygon(50% 0%, 90% 35%, 70% 100%, 30% 100%, 10% 35%);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.7); }
+            100% { filter: brightness(1); }
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 28px;
-            color: #ffffff;
+            margin-top: 10px;
+            font-size: 34px;
+            font-weight: 800;
         }
 
         p {
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 16px;
-            color: #e6e6e6;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
             font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            display: block;
-            color: #ffffff;
+            margin-bottom: 30px;
+            color: #555;
         }
 
-        input[type="text"], select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-            font-size: 15px;
-            background: rgba(255, 255, 255, 0.85);
+        body.dark p { color: #ddd; }
+
+        /* Grid Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
         }
 
-        input[type="text"]:focus, select:focus {
-            border: 2px solid #00b4ff;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            background: #00aaff;
-            font-size: 17px;
-            cursor: pointer;
-            color: white;
-            font-weight: 600;
-            margin-top: 10px;
+        .card {
+            background: rgba(255, 255, 255, 0.75);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
             transition: 0.3s;
+            border-left: 6px solid transparent;
         }
 
-        input[type="submit"]:hover {
-            background: #0088cc;
+        body.dark .card {
+            background: rgba(50,50,50,0.7);
         }
 
+        .carat   { border-color: #ffb3c6; }
+        .depth   { border-color: #ffdca8; }
+        .table   { border-color: #bde0fe; }
+        .x-val   { border-color: #caffbf; }
+        .y-val   { border-color: #ffc6ff; }
+        .z-val   { border-color: #b5e8ff; }
+        .cut     { border-color: #f1c0e8; }
+        .color   { border-color: #ffdfa0; }
+        .clarity { border-color: #c3f8ff; }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 8px rgba(108,99,255,0.4);
+        }
+
+        /* Predict Button */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: .3s;
+            box-shadow: 0 6px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: #584ef2;
+        }
+
+        /* Prediction Result */
         .result {
-            margin-top: 25px;
+            margin-top: 35px;
             text-align: center;
-            font-size: 20px;
-            color: #fff;
-            font-weight: 700;
+            font-size: 28px;
+            font-weight: 800;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
         }
+
+        .price {
+            font-size: 34px;
+            color: #6c63ff;
+        }
+
+        /* Floating assistant */
+        .assistant {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            box-shadow: 0 5px 13px rgba(0,0,0,0.25);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .assistant::before {
+            content: "🤖";
+            font-size: 30px;
+            position: absolute;
+            top: 8px; left: 12px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Dark Mode Toggle */
+        .toggle-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: white;
+            border-radius: 50px;
+            width: 55px;
+            height: 28px;
+            cursor: pointer;
+        }
+
+        .toggle-circle {
+            width: 25px;
+            height: 25px;
+            background: #6c63ff;
+            border-radius: 50%;
+            transition: 0.3s;
+            transform: translateX(2px);
+        }
+
+        body.dark .toggle-circle {
+            transform: translateX(28px);
+            background: #ffd86f;
+        }
+
     </style>
 </head>
 
 <body>
 
+    <!-- DARK MODE TOGGLE -->
+    <div class="toggle-btn" onclick="document.body.classList.toggle('dark')">
+        <div class="toggle-circle"></div>
+    </div>
+
+    <!-- FLOATING AI BOT -->
+    <div class="assistant"></div>
+
     <div class="form-container">
-        <h1>💎 Diamond Price Prediction</h1>
-        <p>Enter the diamond details below</p>
+        <div class="diamond-icon"></div>
+
+        <h1>AI Diamond Price Predictor</h1>
+        <p>Fill in the attributes below. Each card is pastel-coded for clarity.</p>
 
         <form action="{{ url_for('predict_datapoint') }}" method="POST">
 
-            <div class="form-group">
-                <label>Carat</label>
-                <input type="text" name="carat" placeholder="e.g., 0.45">
+            <div class="grid">
+
+                <div class="card carat">
+                    <label>Carat</label>
+                    <input type="text" name="carat" required placeholder="e.g., 0.45">
+                </div>
+
+                <div class="card depth">
+                    <label>Depth</label>
+                    <input type="text" name="depth" placeholder="e.g., 62.0">
+                </div>
+
+                <div class="card table">
+                    <label>Table</label>
+                    <input type="text" name="table" placeholder="e.g., 58">
+                </div>
+
+                <div class="card x-val">
+                    <label>X</label>
+                    <input type="text" name="x" placeholder="e.g., 4.2">
+                </div>
+
+                <div class="card y-val">
+                    <label>Y</label>
+                    <input type="text" name="y" placeholder="e.g., 4.3">
+                </div>
+
+                <div class="card z-val">
+                    <label>Z</label>
+                    <input type="text" name="z" placeholder="e.g., 2.7">
+                </div>
+
+                <div class="card cut">
+                    <label>Cut</label>
+                    <select name="cut">
+                        <option>Fair</option>
+                        <option>Good</option>
+                        <option>Very Good</option>
+                        <option>Premium</option>
+                        <option>Ideal</option>
+                    </select>
+                </div>
+
+                <div class="card color">
+                    <label>Color</label>
+                    <select name="color">
+                        <option>D</option><option>E</option><option>F</option>
+                        <option>G</option><option>H</option><option>I</option><option>J</option>
+                    </select>
+                </div>
+
+                <div class="card clarity">
+                    <label>Clarity</label>
+                    <select name="clarity">
+                        <option>I1</option><option>SI2</option><option>SI1</option>
+                        <option>VS2</option><option>VS1</option><option>VVS2</option>
+                        <option>VVS1</option><option>IF</option>
+                    </select>
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label>Depth</label>
-                <input type="text" name="depth" placeholder="e.g., 62.0">
-            </div>
-
-            <div class="form-group">
-                <label>Table</label>
-                <input type="text" name="table" placeholder="e.g., 58">
-            </div>
-
-            <div class="form-group">
-                <label>X</label>
-                <input type="text" name="x" placeholder="e.g., 4.2">
-            </div>
-
-            <div class="form-group">
-                <label>Y</label>
-                <input type="text" name="y" placeholder="e.g., 4.3">
-            </div>
-
-            <div class="form-group">
-                <label>Z</label>
-                <input type="text" name="z" placeholder="e.g., 2.7">
-            </div>
-
-            <div class="form-group">
-                <label>Cut</label>
-                <select name="cut">
-                    <option>Fair</option>
-                    <option>Good</option>
-                    <option>Very Good</option>
-                    <option>Premium</option>
-                    <option>Ideal</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Color</label>
-                <select name="color">
-                    <option>D</option><option>E</option><option>F</option>
-                    <option>G</option><option>H</option><option>I</option><option>J</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Clarity</label>
-                <select name="clarity">
-                    <option>I1</option><option>SI2</option><option>SI1</option>
-                    <option>VS2</option><option>VS1</option><option>VVS2</option>
-                    <option>VVS1</option><option>IF</option>
-                </select>
-            </div>
-
-            <input type="submit" value="Predict Price">
-
+            <button class="btn" type="submit">🔍 Predict Price</button>
         </form>
 
-        <div class="result">
-            {% if final_result %}
-                Predicted Price: 💲{{ final_result }}
-            {% endif %}
+        {% if final_result %}
+        <div class="result" data-price="{{ final_result }}">
+            Predicted Price: 💲<span class="price">0</span>
         </div>
+        {% endif %}
     </div>
+
+    <!-- Count-up Animation for Prediction -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const resultBox = document.querySelector(".result");
+            if (resultBox) {
+                let finalPrice = parseInt(resultBox.dataset.price);
+                let count = 0;
+                const counter = resultBox.querySelector(".price");
+
+                let interval = setInterval(() => {
+                    count++;
+                    counter.textContent = count.toLocaleString();
+
+                    if (count >= finalPrice) clearInterval(interval);
+
+                }, 5);
+            }
+        });
+    </script>
 
 </body>
 </html>
