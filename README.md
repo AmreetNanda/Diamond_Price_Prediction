@@ -101,13 +101,13 @@ Open: 👉 http://localhost:8501
 ## Screenshots
 
 ##### Home page
-![App Screenshot](https://github.com/AmreetNanda/Chicken_Disease_Classification/blob/main/Chicken_disease_classification.png)
+![App Screenshot](https://github.com/AmreetNanda/Diamond_Price_Prediction/blob/main/Diamond_Price_Prediction_1.png)
 
 ##### Form page
-![App Screenshot](https://github.com/AmreetNanda/Chicken_Disease_Classification/blob/main/Chicken_disease_classification.png)
+![App Screenshot](https://github.com/AmreetNanda/Diamond_Price_Prediction/blob/main/Diamond_Price_Prediction_2.png)
 
 ## Demo
-
+https://github.com/user-attachments/assets/5ef8d5c0-cb8a-4602-b26d-3180f93be919
 
 ## License
 
